@@ -30,7 +30,7 @@ public class MainController {
     @GetMapping(value = "/download", produces = "text/csv")
     public ResponseEntity generateReport() {
         try {
-            File file = writerService.writeFile(service.getDataForCSV(service.getReserves()));
+            File file = writerService.writeFile(service.getDataForCSV(service.getReservesSet()));
             return ResponseEntity.ok()
                     .header("Content-Disposition", "attachment; filename=" + "reserves" + ".csv")
                     .contentLength(file.length())

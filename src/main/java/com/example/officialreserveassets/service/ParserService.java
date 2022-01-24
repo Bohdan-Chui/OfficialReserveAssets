@@ -51,13 +51,13 @@ public class ParserService {
       return list;
     }
 
-    public Set<? extends Reserves> getReserves(){
+    public Set<? extends Reserves> getReservesSet(){
         Set<Reserves> data = new LinkedHashSet<>();
         Calendar calendar = new GregorianCalendar(2004, Calendar.JANUARY,1);
         Calendar now = Calendar.getInstance();
         try {
             while (now.compareTo(calendar) >= 0) {
-                data.add(getData(calendar).clone());
+                data.add(getReservesFromServer(calendar).clone());
                 calendar.add(Calendar.MONTH, 1);
             }
         }catch (CloneNotSupportedException e){
@@ -67,10 +67,10 @@ public class ParserService {
 
     }
 
-    public Reserves getData(Calendar calendar){
+    public Reserves getReservesFromServer(Calendar calendar){
         double value = 0;
         try {
-            value =  getValue(urlService.getURLByDate(calendar));
+            value =  getValueFromServerByUrl(urlService.getURLByDate(calendar));
         }catch (MalformedURLException e){
             e.printStackTrace();
         }
@@ -82,7 +82,7 @@ public class ParserService {
      * @param url
      * @return value
      */
-    public double getValue(URL url) {
+    public double getValueFromServerByUrl(URL url) {
         String inputLine;
         StringBuilder response = new StringBuilder();
         try {
