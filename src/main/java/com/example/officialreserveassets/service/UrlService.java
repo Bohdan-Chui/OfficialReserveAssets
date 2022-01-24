@@ -21,12 +21,11 @@ public class UrlService {
      * @throws MalformedURLException
      */
     public URL getURLByDate(Calendar calendar) throws MalformedURLException {
-        StringBuilder url = new StringBuilder(PATH);
-        url.append(calendar.get(Calendar.YEAR));
-        url.append(getMonth(calendar));
-        url.append(PATH_END);
+        String url = PATH + calendar.get(Calendar.YEAR) +
+                getMonth(calendar) +
+                PATH_END;
 
-        return new URL(url.toString());
+        return new URL(url);
     }
 
     /**
@@ -36,7 +35,7 @@ public class UrlService {
     public String getMonth(Calendar calendar){
        int month = calendar.get(Calendar.MONTH) + 1;
        if(month<=9)
-           return new String("0" + month);
+           return "0" + month;
        else  return Integer.toString(month);
     }
 }

@@ -46,6 +46,8 @@ public class ParserService {
                   String.format(" %.2f", ob2.value - ob1.value)});
           ob1 = ob2;
       }
+//        data.stream().findFirst(e->ob1 = e)
+//         Reservesdata.stream().findFirst();
       return list;
     }
 
